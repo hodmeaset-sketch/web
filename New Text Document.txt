@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr. Bhavin K Bharath — Mechanical Engineer & Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0f1a14;
+    --paper: #f5f2ec;
+    --engine: #1a3d2b;
+    --fuel: #c8a84b;
+    --muted: #6b7568;
+    --rule: #d4cfc6;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 4vw;
+    background: rgba(245,242,236,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--engine);
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.85rem; color: var(--muted);
+    font-weight: 500; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--engine); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+  }
+  .hero-text {
+    padding: 8vw 6vw 6vw 8vw;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--fuel);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--engine);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--fuel);
+  }
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 38ch;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.8rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--engine);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--ink); }
+  .btn-outline {
+    border: 1.5px solid var(--engine);
+    color: var(--engine);
+  }
+  .btn-outline:hover { background: var(--engine); color: var(--white); }
+
+  .hero-visual {
+    background: var(--engine);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  /* Engine-piston SVG ambient art */
+  .hero-visual svg { opacity: 0.18; width: 70%; height: auto; }
+  .hero-stats {
+    position: absolute;
+    bottom: 2.5rem; left: 2.5rem; right: 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 1.2rem 1.4rem;
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--fuel);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.35rem;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 8vw; }
+  section:nth-child(even) { background: var(--white); }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.2rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1rem;
+  }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--fuel);
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--engine);
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-body p { color: var(--muted); margin-bottom: 1.2rem; line-height: 1.9; }
+  .contact-block { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; flex-direction: column;
+    padding: 1rem 1.2rem;
+    border-left: 3px solid var(--fuel);
+    background: var(--paper);
+  }
+  .contact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  .contact-value { font-size: 0.88rem; color: var(--ink); word-break: break-all; }
+  .contact-value a { color: var(--engine); text-decoration: none; }
+  .contact-value a:hover { text-decoration: underline; }
+
+  /* ── EXPERIENCE ── */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--rule);
+  }
+  .timeline-item {
+    padding-left: 2rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -5px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--fuel);
+    border: 2px solid var(--paper);
+  }
+  .timeline-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .timeline-role {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--engine);
+    margin-bottom: 0.2rem;
+  }
+  .timeline-org { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; }
+  .timeline-notes { font-size: 0.85rem; color: var(--muted); }
+  .timeline-notes li { margin-bottom: 0.2rem; padding-left: 1rem; list-style: none; position: relative; }
+  .timeline-notes li::before { content: '→'; position: absolute; left: 0; color: var(--fuel); }
+
+  /* ── RESEARCH ── */
+  .research-intro {
+    max-width: 70ch; color: var(--muted); margin-bottom: 3rem; line-height: 1.9; font-size: 1rem;
+  }
+  .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .pub-card {
+    padding: 1.5rem 1.8rem;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--paper);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .pub-card:hover { border-color: var(--fuel); box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
+  .pub-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--fuel);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .pub-title { font-size: 0.95rem; font-weight: 500; color: var(--engine); margin-bottom: 0.4rem; line-height: 1.5; }
+  .pub-journal { font-size: 0.82rem; color: var(--muted); }
+  .pub-doi { font-size: 0.78rem; }
+  .pub-doi a { color: var(--engine); text-decoration: none; }
+  .pub-doi a:hover { text-decoration: underline; }
+
+  /* ── EDUCATION ── */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    border: 1px solid var(--rule);
+    padding: 1.8rem;
+    border-radius: 4px;
+    position: relative; overflow: hidden;
+  }
+  .edu-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--fuel);
+  }
+  .edu-degree { font-size: 1rem; font-weight: 600; color: var(--engine); margin-bottom: 0.5rem; }
+  .edu-inst { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .edu-year { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--fuel); letter-spacing: 0.1em; }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .skill-group h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.78rem;
+    background: var(--engine);
+    color: var(--white);
+    border-radius: 2px;
+  }
+  .tag.light {
+    background: transparent;
+    border: 1px solid var(--engine);
+    color: var(--engine);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.45);
+    padding: 3rem 8vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p { font-size: 0.82rem; }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--fuel);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { min-height: 300px; }
+    .hero-text { padding: 6rem 6vw 4rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    nav { padding: 1rem 4vw; }
+    .nav-links { gap: 1.2rem; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Dr. B. K. Bharath</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text reveal">
+    <p class="hero-eyebrow">Associate Professor · Researcher · Engineer</p>
+    <h1 class="hero-name">Dr. Bhavin K<br /><em>Bharath</em></h1>
+    <p class="hero-tagline">Ph.D in Mechanical Engineering from NIT Tiruchirappalli. Specialising in nanolubricants, alternative fuels, and AI-driven engine optimisation.</p>
+    <div class="hero-cta">
+      <a href="#research" class="btn btn-primary">View Research</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <!-- Ambient engine schematic -->
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="200" cy="200" r="160" stroke="white" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="110" stroke="white" stroke-width="1"/>
+      <line x1="200" y1="40" x2="200" y2="360" stroke="white" stroke-width="1"/>
+      <line x1="40" y1="200" x2="360" y2="200" stroke="white" stroke-width="1"/>
+      <rect x="160" y="120" width="80" height="160" rx="6" stroke="white" stroke-width="2"/>
+      <rect x="175" y="100" width="50" height="30" rx="3" stroke="white" stroke-width="1.5"/>
+      <line x1="200" y1="200" x2="270" y2="260" stroke="white" stroke-width="2"/>
+      <circle cx="200" cy="200" r="12" fill="white"/>
+      <circle cx="270" cy="260" r="8" stroke="white" stroke-width="2"/>
+    </svg>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">SCI/SCIE Publications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">14+</div>
+        <div class="stat-label">Years Teaching</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Ph.D</div>
+        <div class="stat-label">NIT Tiruchirappalli</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">₹8L</div>
+        <div class="stat-label">Co-I Funded Project</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-tag">01</span>
+    <h2 class="section-title">About</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-body reveal">
+      <p>I am a Mechanical Engineer with a Ph.D from the National Institute of Technology, Tiruchirappalli, currently serving as Associate Professor and Head of Department (in-charge) of Mechanical Engineering at Ahalia School of Engineering and Technology, Palakkad, Kerala.</p>
+      <p>My research is driven by a commitment to sustainable transportation — combining experimental rigour with modern AI techniques to push the boundaries of internal combustion engine technology. I work at the intersection of nanolubricants, ternary alcohol fuel blends, and Artificial Neural Networks to develop predictive models for cleaner, more efficient engines.</p>
+      <p>Beyond research, I am a Handling Editor at SAE International, a peer reviewer for Springer and Wiley journals, and an Autodesk Certified Professional (AutoCAD 2015).</p>
+    </div>
+    <div class="contact-block reveal" id="contact">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value"><a href="mailto:bhavin.bhavam@gmail.com">bhavin.bhavam@gmail.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value"><a href="tel:+919447205706">+91 94472 05706</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value"><a href="https://www.linkedin.com/in/bhavinkbharath" target="_blank" rel="noopener">linkedin.com/in/bhavinkbharath</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">ORCID</span>
+        <span class="contact-value"><a href="https://orcid.org/0000-0003-3968-1264" target="_blank" rel="noopener">0000-0003-3968-1264</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Thrissur, Kerala, India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-tag">02</span>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Dec 2024 — Present</p>
+      <p class="timeline-role">Associate Professor</p>
+      <p class="timeline-org">Ahalia School of Engineering and Technology, Palakkad, Kerala</p>
+      <ul class="timeline-notes">
+        <li>HoD in-charge, Mechanical Engineering Department</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Oct 2023 — Dec 2024</p>
+      <p class="timeline-role">Associate Professor</p>
+      <p class="timeline-org">Vidya Academy of Science and Technology, Thrissur, Kerala</p>
+      <ul class="timeline-notes">
+        <li>Department coordinator for NAAC accreditation</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Sept 2022 — Sept 2023</p>
+      <p class="timeline-role">Assistant Professor</p>
+      <p class="timeline-org">Vidya Academy of Science and Technology, Thrissur, Kerala</p>
+      <ul class="timeline-notes">
+        <li>NAAC coordinator · Thermal/Fluid Stream coordinator · Faculty in-charge, Mechanical Association</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Jul 2011 — Jun 2018</p>
+      <p class="timeline-role">Assistant Professor</p>
+      <p class="timeline-org">Vidya Academy of Science and Technology, Thrissur, Kerala</p>
+      <ul class="timeline-notes">
+        <li>Class tutor for Calicut & KTU university batches</li>
+        <li>Lab in-charge of CAD/CAM Laboratory</li>
+        <li>Organised various technical programmes</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <p class="timeline-meta">Jul 2010 — Jun 2011</p>
+      <p class="timeline-role">Lecturer</p>
+      <p class="timeline-org">Vidya Academy of Science and Technology, Thrissur, Kerala</p>
+      <ul class="timeline-notes">
+        <li>Convener and member of various college committees</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH & PUBLICATIONS -->
+<section id="research">
+  <div class="section-header reveal">
+    <span class="section-tag">03</span>
+    <h2 class="section-title">Research &amp; Publications</h2>
+  </div>
+  <p class="research-intro reveal">My doctoral research centred on ternary alcohol–gasoline blends and hybrid nanolubricants for spark-ignition engines, investigating performance, emission, noise, and vibration characteristics using both experimental and AI-based (ANN) methodologies.</p>
+
+  <div class="pub-list">
+    <div class="pub-card reveal">
+      <p class="pub-meta">2024 · SAE Int. J. Engines · ESCi</p>
+      <p class="pub-title">Optimizing Spark-Ignition Engine Performance with Ternary Blend Fuels and Hybrid Nanolubricants: A Response Surface Methodology Study</p>
+      <p class="pub-journal">SAE International Journal of Engines, 17(8), 2024</p>
+      <p class="pub-doi"><a href="https://doi.org/10.4271/03-17-08-0059" target="_blank" rel="noopener">doi:10.4271/03-17-08-0059</a></p>
+    </div>
+    <div class="pub-card reveal">
+      <p class="pub-meta">2022 · SAE Technical Paper · SCOPUS</p>
+      <p class="pub-title">A Novel Hybrid Nanolubricant for Spark Ignition Engine Application: Studies on Stability, Rheological &amp; Heat Transfer Behavior</p>
+      <p class="pub-journal">SAE Technical Paper 2022-28-0585</p>
+      <p class="pub-doi"><a href="https://doi.org/10.4271/2022-28-0585" target="_blank" rel="noopener">doi:10.4271/2022-28-0585</a></p>
+    </div>
+    <div class="pub-card reveal">
+      <p class="pub-meta">2021 · Arabian Journal for Science and Engineering · SCIE</p>
+      <p class="pub-title">Influence of Higher Alcohol Additives in Methanol-Gasoline Blends on the Performance and Emissions of an Unmodified Automotive SI Engine: A Review</p>
+      <p class="pub-journal">Arabian Journal for Science and Engineering, 46, 7057–7085</p>
+      <p class="pub-doi"><a href="https://doi.org/10.1007/s13369-021-05408-x" target="_blank" rel="noopener">doi:10.1007/s13369-021-05408-x</a></p>
+    </div>
+    <div class="pub-card reveal">
+      <p class="pub-meta">2021 · J. Brazilian Society of Mechanical Sci. & Eng. · SCIE</p>
+      <p class="pub-title">Artificial Neural Network Architecture for Rheological Property Prediction of a Novel Hybrid Nanolubricant for Automotive Spark-Ignition Engine</p>
+      <p class="pub-journal">Journal of the Brazilian Society of Mechanical Sciences and Engineering, 43, 323</p>
+      <p class="pub-doi"><a href="https://doi.org/10.1007/s40430-021-03050-0" target="_blank" rel="noopener">doi:10.1007/s40430-021-03050-0</a></p>
+    </div>
+    <div class="pub-card reveal">
+      <p class="pub-meta">2021 · International Journal of Thermophysics · SCI</p>
+      <p class="pub-title">Experimental Investigation on Rheological and Heat Transfer Performance of Hybrid Nanolubricant and Its Effect on the Vibration and Noise Characteristics of an Automotive Spark-Ignition Engine</p>
+      <p class="pub-journal">International Journal of Thermophysics, 42, 37</p>
+      <p class="pub-doi"><a href="https://doi.org/10.1007/s10765-020-02784-8" target="_blank" rel="noopener">doi:10.1007/s10765-020-02784-8</a></p>
+    </div>
+    <div class="pub-card reveal">
+      <p class="pub-meta">2020 · Energy Sources Part A · SCI</p>
+      <p class="pub-title">Effect of Ternary Blends on the Noise, Vibration, and Emission Characteristics of an Automotive Spark Ignition Engine</p>
+      <p class="pub-journal">Energy Sources, Part A: Recovery, Utilization and Environmental Effects, 46(1), 11073–11094</p>
+      <p class="pub-doi"><a href="https://doi.org/10.1080/15567036.2020.1788673" target="_blank" rel="noopener">doi:10.1080/15567036.2020.1788673</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-tag">04</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <p class="edu-degree">Ph.D — Mechanical Engineering</p>
+      <p class="edu-inst">National Institute of Technology, Tiruchirappalli</p>
+      <p class="edu-year">Jul 2017 – Sep 2022</p>
+      <p style="font-size:0.8rem;color:var(--muted);margin-top:0.8rem;line-height:1.6;">Thesis: <em>Investigations of Ternary Alcohol Blends and Hybrid Nanolubricant on Performance, Emission, Noise and Vibration Characteristics of a SI Engine</em></p>
+    </div>
+    <div class="edu-card reveal">
+      <p class="edu-degree">M.Tech — Mechanical Engineering</p>
+      <p class="edu-inst">Amrita Vishwa Vidyapeetham, Coimbatore</p>
+      <p class="edu-year">Jul 2008 – Jul 2010</p>
+      <p style="font-size:0.8rem;color:var(--muted);margin-top:0.8rem;">Project: Design and Fabrication of a Supersonic Wind Tunnel</p>
+    </div>
+    <div class="edu-card reveal">
+      <p class="edu-degree">B.Tech — Mechanical Engineering</p>
+      <p class="edu-inst">Government Engineering College, Kozhikode</p>
+      <p class="edu-year">Jul 2004 – Jun 2008</p>
+      <p style="font-size:0.8rem;color:var(--muted);margin-top:0.8rem;">Project: Quick Clamping Fixture for Jaw Slotting, HMT Machine Tools Ltd.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section>
+  <div class="section-header reveal">
+    <span class="section-tag">05</span>
+    <h2 class="section-title">Skills &amp; Certifications</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <h4>Programming</h4>
+      <div class="skill-tags">
+        <span class="tag">MATLAB</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h4>CAD &amp; Simulation</h4>
+      <div class="skill-tags">
+        <span class="tag">AutoCAD</span>
+        <span class="tag">Autodesk Inventor</span>
+        <span class="tag">Pro/ENGINEER</span>
+        <span class="tag">ANSYS</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h4>Research Roles</h4>
+      <div class="skill-tags">
+        <span class="tag light">Handling Editor – SAE</span>
+        <span class="tag light">Peer Reviewer – Springer</span>
+        <span class="tag light">Peer Reviewer – Wiley</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h4>Memberships</h4>
+      <div class="skill-tags">
+        <span class="tag light">ISTE (Life Member)</span>
+        <span class="tag light">SAE India</span>
+        <span class="tag light">Autodesk Certified Pro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Dr. Bhavin K Bharath</span>
+  <p>Ahalia School of Engineering and Technology, Palakkad, Kerala · <a href="mailto:bhavin.bhavam@gmail.com" style="color:var(--fuel);text-decoration:none;">bhavin.bhavam@gmail.com</a></p>
+  <p>© 2025 · Built with care</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
